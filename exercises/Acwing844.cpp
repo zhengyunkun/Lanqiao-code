@@ -9,7 +9,7 @@
 using namespace std;
 
 typedef pair<int, int> PII;
-const int N = 10;
+const int N = 110;
 
 int n, m;
 int g[N][N], d[N][N];
@@ -49,7 +49,7 @@ int main()
 
     bfs();
 
-    cout << d[n - 1][m - 1];
+    cout << d[n - 1][m - 1] << endl;
 
     return 0;
 }
