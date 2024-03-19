@@ -16,13 +16,29 @@ bool cmp(int a, int b)
     return a > b;
 }
 
-bool dfs(int u, int cur, int start) 
-//u是当前枚举到了第几根长木棍，cur是当前已经拼出了多少长度，start是当前从哪根木棍开始拼
+bool dfs(int u, int cur, int start) //第u组，cur是第u组当前已有的长度，start表示的是第u组的枚举位置
 {
     if (u * len == sum) return true;
-    if (cur == len) return dfs(u + 1, 0, 0);
+    if (cur == len) return dfs(u + 1, 0, 0); //第u组拼完了，开始拼第u + 1组
 
     for (int i = start; i < n; i ++ )
+    {
+        if (st[i]) continue;
+        if (cur + w[i] <= len)
+        {
+            st[i] = true;
+            if (dfs(u, cur + w[i], i + 1)) return true;
+            st[i] = false;
+        }
+
+        if (!cur || cur + w[i] == len) return false;
+
+        int j = i + 1;
+        while (j < n && w[i] == w[j]) j ++ ;
+        i = j - 1;
+    }
+
+    return false;
 }
 
 int main()
