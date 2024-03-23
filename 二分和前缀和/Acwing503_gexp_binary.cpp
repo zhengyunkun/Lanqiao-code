@@ -13,6 +13,7 @@ int w[N];
 int l[N], r[N], d[N];
 LL b[N];
 
+//找到最后一个符合条件的订单
 bool check(int mid)
 {
     memset(b, 0, sizeof b);
@@ -24,7 +25,7 @@ bool check(int mid)
 
     for (int i = 1; i <= n; i ++ )
     {
-        b[i] += b[i - 1];
+        b[i] += b[i - 1]; //求和
         if (b[i] > w[i]) return false;
     }
 
